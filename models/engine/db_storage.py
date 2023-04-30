@@ -56,7 +56,6 @@ class DBStorage:
         """
         return len(self.all(cls))
 
-
     def all(self, cls=None):
         """query on the current database session"""
         new_dict = {}
