@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This module launches a flask web app"""
-from flask import Flask
+from flask import Flask, make_response
 from models import storage
 from api.v1.views import app_views
 
@@ -12,6 +12,12 @@ app.register_blueprint(app_views)
 def teardown(Exception=None):
     """This function handles teardown"""
     storage.close()
+
+
+@app.errorhandler(404)
+def not_found(error):
+    """This function handles '404' errors"""
+    return make_response({'error': 'Not found'}, 404)
 
 
 if __name__ == '__main__':
