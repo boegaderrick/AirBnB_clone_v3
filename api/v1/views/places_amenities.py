@@ -10,7 +10,7 @@ from models.user import User
 
 @app_views.route('/places/<place_id>/amenities', strict_slashes=False,
                  methods=['GET'])
-def get_amenities(place_id):
+def get_place_amenities(place_id):
     """
         This function returns a list of JSON representations of all
         amenity objects linked to the place specified by 'place_id'
@@ -25,7 +25,7 @@ def get_amenities(place_id):
 
 @app_views.route('/places/<place_id>/amenities/<amenity_id>',
                  strict_slashes=False, methods=['DELETE'])
-def delete_amenity(place_id, amenity_id):
+def remove_amenity(place_id, amenity_id):
     """This function unlinks an amenity object from a place object"""
     place = storage.get(Place, place_id)
     if not place:
