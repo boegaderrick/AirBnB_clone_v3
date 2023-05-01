@@ -7,6 +7,7 @@ from models.place import Place
 from models.city import City
 from models.user import User
 from models.amenity import Amenity
+from models.state import State
 
 
 @app_views.route('/cities/<city_id>/places', strict_slashes=False,
@@ -105,12 +106,12 @@ def search_places():
 
     places = []
     for city in cities:
-        if len(amenities) > 0:
-            for place in city.places:
+        for place in city.places:
+            if len(amenities) > 0:
                 if all(am in place.amenities for am in amenities):
                     places.append(place.to_dict())
-        else:
-            places.append(place.to_dict())
+            else:
+                places.append(place.to_dict())
 
     return make_response(jsonify(places))
 
