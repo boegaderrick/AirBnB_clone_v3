@@ -19,6 +19,12 @@ def not_found(error):
     """This function handles '404' errors"""
     return make_response({'error': 'Not found'}, 404)
 
+@app.errorhandler(400)
+def bad_request(err):
+    """This function handles '400' errors"""
+    desc = err.description if err.description else err
+    return make_response({'error': desc}, 400)
+
 
 if __name__ == '__main__':
     from os import getenv
