@@ -19,6 +19,7 @@ def not_found(error):
     """This function handles '404' errors"""
     return make_response({'error': 'Not found'}, 404)
 
+
 @app.errorhandler(400)
 def bad_request(err):
     """This function handles '400' errors"""
