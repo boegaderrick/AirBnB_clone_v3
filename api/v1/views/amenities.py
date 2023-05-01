@@ -12,11 +12,13 @@ def get_amenities():
         This function returns a list of JSON representations of all
         amenity objects in storage
     """
-    amenities = [amenity.to_dict() for amenity in storage.all(Amenity).values()]
+    amenities = [amenity.to_dict() for amenity in storage.
+                 all(Amenity).values()]
     return jsonify(amenities)
 
 
-@app_views.route('/amenities/<amenity_id>', strict_slashes=False, methods=['GET'])
+@app_views.route('/amenities/<amenity_id>', strict_slashes=False,
+                 methods=['GET'])
 def get_amenity(amenity_id):
     """
         This function returns a JSON represention of amenity object specified
@@ -58,7 +60,8 @@ def create_amenity():
     return make_response(jsonify(amenity.to_dict()), 201)
 
 
-@app_views.route('/amenities/<amenity_id>', strict_slashes=False, methods=['PUT'])
+@app_views.route('/amenities/<amenity_id>', strict_slashes=False,
+                 methods=['PUT'])
 def update_amenity(amenity_id):
     """This function updates a amenity object"""
     amenity = storage.get(Amenity, amenity_id)
