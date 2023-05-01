@@ -19,7 +19,7 @@ def get_place_amenities(place_id):
     if not place:
         abort(404)
 
-    ameinities = [amenity.to_dict() for amenity in place.amenities]
+    amenities = [amenity.to_dict() for amenity in place.amenities]
     return make_response(jsonify(amenities))
 
 
