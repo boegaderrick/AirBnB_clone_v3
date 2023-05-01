@@ -50,8 +50,6 @@ def create_user():
 
     if not request.get_json():
         abort(400, description='Not a JSON')
-    if not request.get_json().get('name'):
-        abort(400, description='Missing name')
     if not request.get_json().get('email'):
         abort(400, description='Missing email')
     if not request.get_json().get('password'):
