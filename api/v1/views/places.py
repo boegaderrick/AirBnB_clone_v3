@@ -113,7 +113,9 @@ def search_places():
                 places.append(place.to_dict())
 
     for place in places:
-        place['amenities'] = [i.to_dict() for i in place['amenities']]
+        if place.get('amenities'):
+            del place['amenities']
+    #    place['amenities'] = [i.to_dict() for i in place['amenities']]
 
     return make_response(jsonify(places))
 
