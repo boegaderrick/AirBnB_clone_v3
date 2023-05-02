@@ -100,9 +100,7 @@ def search_places():
         state = storage.get(State, obj)
         cities.extend(state.cities)
 
-    print(cities,'\n\n\n')
     cities = cities if len(cities) > 0 else storage.all(City).values()
-    print(cities,'\n\n\n')
     amenities = [storage.get(Amenity, obj) for obj in a_ids]
 
     places = []
