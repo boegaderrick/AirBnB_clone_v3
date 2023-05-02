@@ -112,6 +112,9 @@ def search_places():
             else:
                 places.append(place.to_dict())
 
+    for place in places:
+        place['amenities'] = [i.to_dict() for i in place['amenities']]
+
     return make_response(jsonify(places))
 
 
