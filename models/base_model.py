@@ -28,6 +28,12 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Initialization of the base model"""
+        if 'password' in kwargs:
+            from hashlib import md5
+            obj = md5()
+            obj.update(kwargs['password'].encode())
+            kwargs['password'] = obj.hexdigest()
+
         if kwargs:
             for key, value in kwargs.items():
                 if key != "__class__":
@@ -47,6 +53,7 @@ class BaseModel:
             self.created_at = datetime.utcnow()
             self.updated_at = self.created_at
 
+
     def __str__(self):
         """String representation of the BaseModel class"""
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
@@ -58,7 +65,7 @@ class BaseModel:
         models.storage.new(self)
         models.storage.save()
 
-    def to_dict(self):
+    def to_dict(self, hide_pwd=True):
         """returns a dictionary containing all keys/values of the instance"""
         new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
@@ -68,6 +75,10 @@ class BaseModel:
         new_dict["__class__"] = self.__class__.__name__
         if "_sa_instance_state" in new_dict:
             del new_dict["_sa_instance_state"]
+        if hide_pwd:
+            if 'password' in new_dict:
+                del new_dict['password']
+
         return new_dict
 
     def delete(self):
