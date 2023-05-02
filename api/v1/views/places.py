@@ -88,8 +88,6 @@ def search_places():
     """This function searches for places by filters specified"""
     try:
         request.get_json()
-        # if not request.get_json():
-        #    abort(400, description='Not a JSON')
     except Exception:
         abort(400, description='Not a JSON')
 
@@ -102,7 +100,9 @@ def search_places():
         state = storage.get(State, obj)
         cities.extend(state.cities)
 
+    print(cities,'\n\n\n')
     cities = cities if len(cities) > 0 else storage.all(City).values()
+    print(cities,'\n\n\n')
     amenities = [storage.get(Amenity, obj) for obj in a_ids]
 
     places = []
