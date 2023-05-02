@@ -87,8 +87,9 @@ def create_place(city_id):
 def search_places():
     """This function searches for places by filters specified"""
     try:
-        if not request.get_json():
-            abort(400, description='Not a JSON')
+        request.get_json()
+        # if not request.get_json():
+        #    abort(400, description='Not a JSON')
     except Exception:
         abort(400, description='Not a JSON')
 
@@ -101,7 +102,7 @@ def search_places():
         state = storage.get(State, obj)
         cities.extend(state.cities)
 
-    cities = cities if len(cities) > 0 else storage.all(City)
+    cities = cities if len(cities) > 0 else storage.all(City).values()
     amenities = [storage.get(Amenity, obj) for obj in a_ids]
 
     places = []
