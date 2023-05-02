@@ -3,7 +3,9 @@
 from flask import Flask, make_response
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 
+cors = CORS(app_views, resources={"/*": {"origins": "0.0.0.0"}})
 app = Flask(__name__)
 app.register_blueprint(app_views)
 
