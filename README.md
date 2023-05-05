@@ -159,7 +159,7 @@ Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://tw
 
 Second part of Airbnb: Joann Vuong
 
-Third part of AirBnB: Derrick Boega Nyabuto [Github](https://github.com/boegaderrick)
+AirBnB V3: Derrick Boega Nyabuto [Github](https://github.com/boegaderrick)
 
 ## License
 Public Domain. No copy write protection. 
